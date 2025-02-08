@@ -1,0 +1,25 @@
+[package]
+name = "counter-contract"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+alkanes-runtime = { git = "https://github.com/kungfuflex/alkanes-rs", features = ["test-utils", "panic-hook"] }
+alkanes-support = { git = "https://github.com/kungfuflex/alkanes-rs" }
+metashrew-support = { git = "https://github.com/kungfuflex/alkanes-rs" }
+metashrew = { git = "https://github.com/kungfuflex/alkanes-rs" }
+anyhow = "1.0"
+wasm-bindgen = "0.2"
+
+[features]
+default = ["test-utils"]
+test-utils = []
+
+[profile.release]
+opt-level = 's'
+lto = true
+codegen-units = 1
+panic = 'abort'
